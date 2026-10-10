@@ -1,0 +1,43 @@
+{
+  "name": "@nexagent/channels",
+  "version": "0.1.0",
+  "description": "企业 IM 通道抽象与实现：微信公众号 / 企业微信（飞书、钉钉规划中）。",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "wechat",
+    "weixin",
+    "wecom",
+    "channel",
+    "im",
+    "bot",
+    "agent",
+    "企业微信",
+    "公众号"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoeworth521-wq/nexagent.git",
+    "directory": "packages/channels"
+  }
+}

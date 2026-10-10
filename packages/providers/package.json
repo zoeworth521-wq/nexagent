@@ -1,0 +1,44 @@
+{
+  "name": "@nexagent/providers",
+  "version": "0.1.0",
+  "description": "国产大模型统一适配层：通义 / DeepSeek / GLM / Kimi / 豆包 / 文心。",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "provider",
+    "deepseek",
+    "qwen",
+    "dashscope",
+    "glm",
+    "kimi",
+    "doubao",
+    "ernie"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoeworth521-wq/nexagent.git",
+    "directory": "packages/providers"
+  }
+}

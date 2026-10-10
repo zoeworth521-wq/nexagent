@@ -1,0 +1,19 @@
+{
+  "name": "nexagent-example-basic-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "NexAgent 最小示例：国产模型 + 合规网关。",
+  "scripts": {
+    "dev": "node --experimental-strip-types src/index.ts"
+  },
+  "dependencies": {
+    "@mastra/core": "^0.10.0",
+    "@nexagent/compliance": "file:../../packages/compliance",
+    "@nexagent/providers": "file:../../packages/providers"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2"
+  }
+}

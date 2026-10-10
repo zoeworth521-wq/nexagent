@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: typecheck · build · test (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['20', '22']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - name: Install
+        # 提交 package-lock.json 后可改为 `npm ci`，以获得可复现的安装
+        run: npm install --no-audit --no-fund
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test

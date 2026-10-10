@@ -1,0 +1,45 @@
+name: 功能请求
+description: 提出一个新功能或新适配器
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提之前请先读 [`VISION.md`](../../VISION.md) —— 每个功能都要能回答
+        "它解决了国产模型 / 国内 IM / 合规中的哪一个问题"。
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你要解决什么问题
+      description: 描述你的使用场景与当前卡点，而不是直接给方案。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你建议的做法
+    validations:
+      required: false
+  - type: dropdown
+    id: category
+    attributes:
+      label: 属于哪一类
+      options:
+        - 国产模型适配
+        - IM 通道接入
+        - 内容合规
+        - 脚手架 / 工程化
+        - 文档
+        - 其他
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: 自查
+      options:
+        - label: 该功能不需要修改上游（Mastra）源码
+          required: true
+        - label: 该功能不涉及绕过平台限制（如个人微信 hook）
+          required: true

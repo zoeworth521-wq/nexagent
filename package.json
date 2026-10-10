@@ -1,0 +1,51 @@
+{
+  "name": "nexagent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "面向中文生态的 AI Agent 应用底座：国产模型开箱可用，微信/飞书/钉钉一键接入。",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "build": "npm run build --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "node scripts/clean.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "llm",
+    "mastra",
+    "typescript",
+    "deepseek",
+    "qwen",
+    "dashscope",
+    "glm",
+    "kimi",
+    "wechat",
+    "wecom",
+    "feishu",
+    "国产大模型",
+    "中文生态"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoeworth521-wq/nexagent.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zoeworth521-wq/nexagent/issues"
+  },
+  "homepage": "https://github.com/zoeworth521-wq/nexagent#readme"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "create-nexagent",
+  "version": "0.1.0",
+  "description": "NexAgent 一键脚手架：交互式生成一个可运行的国产模型 Agent 项目。",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "create-nexagent": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "keywords": [
+    "create",
+    "scaffold",
+    "cli",
+    "agent",
+    "nexagent",
+    "deepseek",
+    "qwen"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zoeworth521-wq/nexagent.git",
+    "directory": "packages/cli"
+  }
+}

@@ -1,0 +1,49 @@
+name: Bug 报告
+description: 报告一个可复现的问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈！**请不要在这里粘贴任何 API Key、AppSecret 或 EncodingAESKey。**
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 发生了什么
+      description: 描述你看到的现象，以及你期望的结果。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 尽量给出最小可复现代码片段。
+      placeholder: |
+        1. 用 provider = deepseek 初始化
+        2. 调用 xxx
+        3. 报错 ...
+    validations:
+      required: true
+  - type: input
+    id: package
+    attributes:
+      label: 相关包
+      placeholder: "@nexagent/providers / @nexagent/channels / ..."
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node 版本
+      placeholder: "20.10.0"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 报错日志
+      description: 请先脱敏（去掉密钥、AppID、openid 等）。
+      render: shell
+    validations:
+      required: false
