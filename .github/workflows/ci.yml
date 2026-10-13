@@ -30,8 +30,9 @@ jobs:
           cache: npm
 
       - name: Install
-        # 提交 package-lock.json 后可改为 `npm ci`，以获得可复现的安装
-        run: npm install --no-audit --no-fund
+        # 使用 npm ci：严格按 package-lock.json 安装，保证构建可复现；
+        # 若 package.json 与锁文件不一致会直接失败，属于预期行为。
+        run: npm ci --no-audit --no-fund
 
       - name: Typecheck
         run: npm run typecheck
