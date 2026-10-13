@@ -1,0 +1,28 @@
+# CODEOWNERS — 谁负责审阅哪些文件
+#
+# 语法：<路径模式>  <负责人/团队>
+# 最后匹配的规则优先生效。
+#
+# 单一维护者阶段：全部由仓库所有者负责。
+# 后续若拆分维护者，按下面的分区逐条改写即可。
+
+# 默认：所有文件
+*                       @zoeworth521-wq
+
+# 核心适配层 —— 改动会直接影响下游用户，需谨慎审阅
+/packages/providers/    @zoeworth521-wq
+/packages/channels/     @zoeworth521-wq
+/packages/compliance/   @zoeworth521-wq
+/packages/cli/          @zoeworth521-wq
+
+# 治理与许可文件 —— 涉及法律边界，不接受外部直接改动
+/LICENSE                @zoeworth521-wq
+/NOTICE                 @zoeworth521-wq
+/VISION.md              @zoeworth521-wq
+/SECURITY.md            @zoeworth521-wq
+
+# CI 与发布链路
+/.github/               @zoeworth521-wq
+
+# 文档
+/docs/                  @zoeworth521-wq
