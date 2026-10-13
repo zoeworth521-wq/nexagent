@@ -1,12 +1,15 @@
 name: Set repo metadata
 
-# 诊断用：尝试用 GITHUB_TOKEN 设置仓库 description 与 topics，
-# 并把每一步的 HTTP 状态码与响应体写入 .github/meta-result.json，便于排查。
+# 尝试用 GITHUB_TOKEN 设置仓库 description 与 topics。
+# 每步的 HTTP 状态码与响应体会写入 .github/meta-result.json 并回写仓库，便于核对。
 on:
   workflow_dispatch:
   push:
     paths:
       - '.github/workflows/set-repo-meta.yml'
+
+permissions:
+  contents: write
 
 jobs:
   set-metadata:
@@ -22,38 +25,42 @@ jobs:
         run: |
           set -uo pipefail
 
-          DESC_BODY=$(cat <<'JSON'
-          {"description": "面向中文生态的 AI Agent 应用底座：Mastra 内核 + 六家国产大模型适配 + 微信/企微渠道接入 + 合规护栏，全部为可插拔 adapter。"}
-          JSON
-          )
+          DESC_BODY='{"description":"面向中文生态的 AI Agent 应用底座：Mastra 内核 + 六家国产大模型适配 + 微信/企微渠道接入 + 合规护栏，全部为可插拔 adapter。"}'
           DESC_CODE=$(curl -sS -o /tmp/desc.json -w '%{http_code}' -X PATCH \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
+            -H "Content-Type: application/json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/$REPO" -d "$DESC_BODY")
 
-          TOPICS_BODY=$(cat <<'JSON'
-          {"names": ["ai-agent","mastra","llm","typescript","deepseek","qwen","dashscope","glm","kimi","wechat","wecom","chinese-llm"]}
-          JSON
-          )
+          TOPICS_BODY='{"names":["ai-agent","mastra","llm","typescript","deepseek","qwen","dashscope","glm","kimi","wechat","wecom","chinese-llm"]}'
           TOPICS_CODE=$(curl -sS -o /tmp/topics.json -w '%{http_code}' -X PUT \
             -H "Authorization: Bearer $GH_TOKEN" \
             -H "Accept: application/vnd.github+json" \
+            -H "Content-Type: application/json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             "https://api.github.com/repos/$REPO/topics" -d "$TOPICS_BODY")
 
           echo "description HTTP $DESC_CODE"
           echo "topics      HTTP $TOPICS_CODE"
 
-          mkdir -p .github
-          {
-            echo "{"
-            echo "  \"description_http\": $DESC_CODE,"
-            echo "  \"description_body\": $(cat /tmp/desc.json | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))'),"
-            echo "  \"topics_http\": $TOPICS_CODE,"
-            echo "  \"topics_body\": $(cat /tmp/topics.json | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read()))')"
-            echo "}"
-          } > .github/meta-result.json
+          python3 - "$DESC_CODE" "$TOPICS_CODE" <<'PY'
+          import json, sys
+          desc_code, topics_code = sys.argv[1], sys.argv[2]
+          def load(p):
+              try:
+                  return open(p, encoding='utf-8').read()[:600]
+              except Exception as e:
+                  return f'<unreadable: {e}>'
+          out = {
+              "description_http": desc_code,
+              "description_body": load('/tmp/desc.json'),
+              "topics_http": topics_code,
+              "topics_body": load('/tmp/topics.json'),
+          }
+          open('.github/meta-result.json', 'w', encoding='utf-8').write(
+              json.dumps(out, ensure_ascii=False, indent=2) + "\n")
+          PY
 
           cat .github/meta-result.json
 
@@ -62,5 +69,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/meta-result.json
-          git diff --cached --quiet || git commit -m "chore: 记录仓库元数据设置结果 [skip ci]"
-          git push || true
+          git diff --cached --quiet && echo "无变化" || git commit -m "chore: 记录仓库元数据设置结果 [skip ci]"
+          git push origin HEAD:main
