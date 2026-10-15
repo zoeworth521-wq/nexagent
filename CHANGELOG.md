@@ -12,8 +12,9 @@
 
 ### 维护
 - GitHub Actions 升级：`actions/checkout` 与 `actions/setup-node` 均由 v4 升至 v7。
-- `dependabot.yml` 忽略 `@types/node` 的主版本升级：类型定义必须与最低支持的
-  运行时对齐，否则类型系统会放行运行时不存在的 API。
+- `dependabot.yml` 忽略 `@types/node` 与 `typescript` 的主版本升级：
+  前者必须与最低支持的运行时对齐，否则类型系统会放行运行时不存在的 API；
+  后者涉及编译器行为变更，由维护者评估后再手动升级。
 
 ### 计划中
 - `create-nexagent` 发布到 npm

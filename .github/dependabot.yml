@@ -15,6 +15,9 @@ updates:
       # 这类错误只会在生产环境炸出来，本地与 CI 都测不到。
       - dependency-name: "@types/node"
         update-types: ["version-update:semver-major"]
+      # TypeScript 主版本涉及编译器行为变更，由维护者评估后再手动升级。
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
       prefix-development: "chore(dev-deps)"
