@@ -9,8 +9,11 @@
 - **最低 Node 版本从 `>=20.10` 提升到 `>=22.12`**。Node 20 已于 2026-04 结束维护，
   且测试框架 vitest 5 不再支持 Node 20。CI 矩阵相应调整为 Node 22 / 24。
 - `vitest` 由 2 升级到 5。
-- `@types/node` 固定在 22.x：其主版本必须与最低支持的运行时对齐，
-  否则类型系统会放行运行时不存在的 API。
+
+### 维护
+- GitHub Actions 升级：`actions/checkout` 与 `actions/setup-node` 均由 v4 升至 v7。
+- `dependabot.yml` 忽略 `@types/node` 的主版本升级：类型定义必须与最低支持的
+  运行时对齐，否则类型系统会放行运行时不存在的 API。
 
 ### 计划中
 - `create-nexagent` 发布到 npm
