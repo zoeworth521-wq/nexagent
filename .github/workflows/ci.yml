@@ -18,7 +18,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['20', '22']
+        # 最低支持 Node 22.12（Node 20 已于 2026-04 结束维护）；
+        # 上界取当前 Active LTS，确保新版本上仍可构建。
+        node: ['22', '24']
     steps:
       - name: Checkout
         uses: actions/checkout@v4

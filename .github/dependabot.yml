@@ -9,6 +9,12 @@ updates:
       time: "09:00"
       timezone: Asia/Shanghai
     open-pull-requests-limit: 5
+    ignore:
+      # @types/node 必须与最低支持的 Node 运行时版本对齐：
+      # 类型定义跳到更高主版本后，编译器会放行运行时不存在的 API，
+      # 这类错误只会在生产环境炸出来，本地与 CI 都测不到。
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "chore(deps)"
       prefix-development: "chore(dev-deps)"

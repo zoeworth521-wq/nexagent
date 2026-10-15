@@ -7,7 +7,7 @@
 国产模型开箱可用 · 微信/飞书/钉钉一键接入 · 内置内容合规 · 全中文文档
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
-[![Node](https://img.shields.io/badge/node-%3E%3D20.10-339933.svg)](https://nodejs.org)
+[![Node](https://img.shields.io/badge/node-%3E%3D22.12-339933.svg)](https://nodejs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6.svg)](https://www.typescriptlang.org)
 [![Status](https://img.shields.io/badge/status-v0.1.0%20early-2f6fed.svg)](./CHANGELOG.md)
 

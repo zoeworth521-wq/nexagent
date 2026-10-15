@@ -18,7 +18,7 @@
 
 **Q：换了 `NEXAGENT_PROVIDER` 但好像没生效？**
 `resolveDefaultProviderId()` 读的是 `process.env.NEXAGENT_PROVIDER`。
-如果你用的是 `.env` 文件，Node 20 不会自动加载它 —— 需要用
+如果你用的是 `.env` 文件，Node 不会自动加载它 —— 需要用
 `node --env-file=.env` 或在代码里显式加载。
 
 **Q：豆包报 model 不存在？**

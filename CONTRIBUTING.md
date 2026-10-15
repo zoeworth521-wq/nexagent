@@ -10,7 +10,7 @@
 
 ## 环境准备
 
-- Node.js **>= 20.10**
+- Node.js **>= 22.12**
 - npm >= 10（项目用 npm workspaces）
 
 ```bash

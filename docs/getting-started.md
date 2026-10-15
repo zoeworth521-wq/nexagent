@@ -2,7 +2,7 @@
 
 ## 前置要求
 
-- Node.js **>= 20.10**（用到内置 `fetch` 与 `node --experimental-strip-types`）
+- Node.js **>= 22.12**（用到内置 `fetch` 与 `node --experimental-strip-types`）
 - npm >= 10
 
 ## 1. 克隆并安装
